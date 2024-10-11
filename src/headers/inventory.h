@@ -2,24 +2,27 @@ typedef Item *PItem;
 
 enum InventoryStatus
 {
-  INVENTORY_MAX_CAP_REACHED,
-  ITEM_SUCCESSFULLY_ADDED,
-  ITEM_FAILED_TO_ADD,
-  ITEM_CONSUMED,
-  ITEM_FAILED_TO_CONSUME,
-  MEMORY_ALLOCATION_ERROR,
-  UNKNOWN_ITEM,
-  ITEM_FOUND,
-  EMPTY_LIST,
-  UPDATE_COMPLETE
+  ITEM_SUCCESSFULLY_ADDED = 0,
+  ITEM_CONSUMED = 1,
+  ITEM_CREATED = 2,
+  ITEM_FOUND = 3,
+  UPDATE_COMPLETE = 4,
+  REMOVE_COMPLETE = 5,
+
+  INVENTORY_MAX_CAP_REACHED = 100,
+  ITEM_FAILED_TO_ADD = 101,
+  ITEM_FAILED_TO_CONSUME = 102,
+  MEMORY_ALLOCATION_ERROR = 103,
+  UNKNOWN_ITEM = 104,
+  EMPTY_LIST = 105,
+  UPDATE_FAILED = 106
 };
 
-struct GetItemResult 
+struct InventoryOutputPackage 
 {
   struct Item item;
   enum InventoryStatus status;
 };
-
 
 struct Item
 {
@@ -34,17 +37,16 @@ struct Inventory
   PItem cursor;
   PItem start;
   PItem end;
+  size_t size;
 }
 
-PItem createTempItem(struct Inventory *list, struct Item element)
-enum InventoryStatus addFirst(struct Inventory *list, struct Item element);
-enum InventoryStatus addLast(struct Inventory *list, struct Item element);
+struct InventoryOutputPackage CreateTempItem(struct Inventory *list, struct Item element)
+struct InventoryOutputPackage AddFirst(struct Inventory *list, struct Item element);
+struct InventoryOutputPackage AddLast(struct Inventory *list, struct Item element);
 
-int InventoryCurrentSize(struct Inventory *list);
-enum InventoryStatus ConsumeItem(struct Inventory *list, const char* name, int amount);
+struct InventoryOutputPackage ConsumeItem(struct Inventory *list, const char* name, int amount);
 
-void RemoveFromInventory(struct Inventory *list, struct Item element);
-enum InventoryStatus UpdateInventory(struct Inventory *list, struct Item element);
+struct InventoryOutputPackage RemoveFromInventory(struct Inventory *list, struct Item element);
+struct InventoryOutputPackage UpdateInventory(struct Inventory *list, struct Item element);
 
-enum InventoryStatus DisplayOrder(struct Inventory *list);
-struct GetItemResult GetItem(struct Inventory *list, const char* name);
+struct InventoryOutputPackage GetItem(struct Inventory *list, const char* name);
