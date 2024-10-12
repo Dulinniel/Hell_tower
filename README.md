@@ -11,7 +11,8 @@ Somehow a game where you climb a tower and do stuff
 - [ ] Implement advanced Bank system
 - [ ] Implement Tax system
 - [x] Implement Date system
-- [ ] Imeplement Hour system
+- [x] Implement Hour system
+- [ ] Implement Season system
 - [ ] Implement Meteo system
 - [ ] Implement Quest system
 - [ ] Implement NPCs logic
