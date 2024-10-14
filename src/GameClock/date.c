@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "./headers/date.h"
+#include "../headers/date.h"
 
 const unsigned char DAYS_IN_WEEK = 7;
 const unsigned char DAYS_IN_MONTH = 30;
@@ -27,37 +27,17 @@ void PreviousDay(struct Date *currentDate)
 
 const char* DayName(enum Days day)
 {
-  const char* name;
   switch (day)
   {
-  case Lungernum:
-    name = "Lungernum";
-    break;
-  case Marklonum:
-    name = "Marklonum";
-    break;
-  case Mertenum:
-    name = "Mertenum";
-    break;
-  case Jeuilonum:
-    name = "Jeuilonum";
-    break;
-  case Venkartum:
-    name = "Venkartum";
-    break;
-  case Samejum:
-    name = "Samejum";
-    break;
-  case Dimalkum:
-    name = "Dimalkum";
-    break;
-  default:
-    name = "unknown";
-    break;
+  case Lungernum: return "Lungernum";
+  case Marklonum: return "Marklonum";
+  case Mertenum: return "Mertenum";
+  case Jeuilonum: return "Jeuilonum";
+  case Venkartum: return "Venkartum";
+  case Samejum: return "Samejum";
+  case Dimalkum: return "Dimalkum";
+  default: return "unknown";
   }
-
-  return name;
-
 }
 
 void NextMonth(enum Months *currentMonth)
@@ -72,47 +52,20 @@ void PreviousMonth(enum Months *currentMonth)
 
 const char* Monthname(enum Months month)
 {
-  const char* name;
   switch (month)
   {
-  case September:
-    name = "September";
-    break;
-  case October:
-    name = "October";
-    break;
-  case November:
-    name = "November";
-    break;
-  case December:
-    name = "December";
-    break;
-  case January:
-    name = "January";
-    break;
-  case February:
-    name = "February";
-    break;
-  case March:
-    name = "March";
-    break;
-  case April:
-    name = "April";
-    break;
-  case May:
-    name = "May";
-    break;
-  case June:
-    name = "June";
-    break;
-  case July:
-    name = "July";
-    break;
-  default:
-    name = "Unknown";
-    break;
+  case September: return "September";
+  case October: return "October";
+  case November: return "November";
+  case December: return "December";
+  case January: return "January";
+  case February: return "February";
+  case March: return "March";
+  case April: return "April";
+  case May: return "May";
+  case June: return "June";
+  case July: return "July";
+  default: return "Unknown";
   }
-
-  return name;
 
 }

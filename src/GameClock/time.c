@@ -1,5 +1,5 @@
 #include <stdio>
-#include "./headers/time.h"
+#include "../headers/time.h"
 
 const unsigned char FIRST_MORNING_HOUR = 6;
 const unsigned char FIRST_MORNING_MINUTE = 0;
