@@ -44,7 +44,8 @@ struct XMLNode* ParseXMLFile(const char* filename)
       else AddChildNode(current_node, new_node);
 
       current_node = new_node;
-    } else if (trimmed_line[0] == '<' && trimmed_line[1] == '/') current_node = root;  // Pour un parser simple, on remonte au parent directement
+      // That's some simple shit, I just attach to root
+    } else if (trimmed_line[0] == '<' && trimmed_line[1] == '/') current_node = root;
     else if (current_node) current_node->value = strdup(trimmed_line);
   }
 
