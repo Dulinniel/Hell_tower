@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "../headers/weather.h"
-#include "../Random/random.c";
+#include "../headers/random.h"
 
 struct MeteoProbability springProbabilities[] = 
 {
@@ -80,7 +80,7 @@ enum Weather SetWeather(enum Season season)
     for (int i = 0; i < probabilitiesCount; i++) 
     {
       cumulativeProbability += probabilities[i].probability;
-      if (randomValue < cumulativeProbability) resultingMeteo = probabilities[i].meteo;
+      if (randomValue < cumulativeProbability) resultingMeteo = probabilities[i].weather;
     }
   } else resultingMeteo = SUNNY;
 
@@ -89,10 +89,10 @@ enum Weather SetWeather(enum Season season)
 
 void UpdateWeather(struct WeatherReport *weatherReport, enum Season season)
 {
-  weatherReport->temperature_range = GetTemperatureRange(season);
-  enum Weather cuurentWeather = SetWeater(season);
-  weatherReport->current_temperature = RandomBetween(weatherReport->temperature_range->minimal_temperature,
-                                                     weatherReport->temperature_range->maximal_temperature);
+  weatherReport->temperature = GetTemperatureRange(season);
+  enum Weather cuurentWeather = SetWeather(season);
+  weatherReport->current_temperature = RandomBetween(weatherReport->temperature.minimal_temperature,
+                                                     weatherReport->temperature.maximal_temperature);
   weatherReport->weather = cuurentWeather;
 }
 
@@ -104,11 +104,11 @@ struct Temperature_Range GetTemperatureRange(enum Season season)
   case SUMMER: return (struct Temperature_Range){20, 35};
   case AUTUMN: return (struct Temperature_Range){10, 20};
   case WINTER: return (struct Temperature_Range){-10, 5};
-  default: return (struct Temperature_Range){0, 0}; // Valeur par défaut
+  default: return (struct Temperature_Range){0, 0}; // How did we get here ? 
   }
 }
 
-const char* GetMeteoName(Meteo meteo)
+const char* GetMeteoName(enum Weather meteo)
 {
   switch (meteo)
   {

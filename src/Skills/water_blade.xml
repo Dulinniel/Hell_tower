@@ -1,0 +1,32 @@
+<Skill>
+  <name>Water blade</name>
+  <description>Blade made out of water. Can be deadly</description>
+  <rank>COMMON</rank>
+  <id>3</id>
+  <min_level>1</min_level>
+  <max_level>30</max_level>
+  <skill_types>SPELL|WATER|SLASH</skill_types>
+  <cooldown>1</cooldown>
+  <load_turn>0</load_turn>
+  <mana_cost>3</mana_cost>
+
+  <FixedDamages>
+    <FixedDamage>
+      <damage_type>WATER</damage_type>
+      <damage_value>2</damage_value>
+    </FixedDamage>
+    <FixedDamage>
+      <damage_type>SLASH</damage_type>
+      <damage_value>3</damage_value>
+    </FixedDamage>
+  </FixedDamages>
+
+  <LastingDamages>
+    <LastingDamage>
+      <damage_type>BLEED</damage_type>
+      <damage_value>1</damage_value>
+      <duration>5</duration>
+      <chance>10</chance>
+    </LastingDamage>
+  </LastingDamages>
+</Skill>

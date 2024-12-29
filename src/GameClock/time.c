@@ -1,22 +1,23 @@
-#include <stdio>
+#include <stdio.h>
+#include <stdlib.h>
 #include "../headers/time.h"
 
 const unsigned char FIRST_MORNING_HOUR = 6;
 const unsigned char FIRST_MORNING_MINUTE = 0;
 const unsigned char MINUTES_IN_AN_HOUR = 60;
 
-struct Time InitClock()
+struct Time* InitClock()
 {
-  struct Time clock;
-  clock.hour = FIRST_MORNING_HOUR;
-  clock.minute = FIRST_MORNING_MINUTE;
-  clock.moment = SUNRISE;
-  return clock
+  struct Time* clock = malloc(sizeof(struct Time));
+  clock->hour = FIRST_MORNING_HOUR;
+  clock->minute = FIRST_MORNING_MINUTE;
+  clock->moment = SUNRISE;
+  return clock;
 }
 
 void UpdateCurrentTime(struct Time *clock, unsigned char minutes_elapsed)
 {
-  if ( clock == NULL ) &clock = InitClock();
+  if ( clock == NULL ) clock = InitClock();
   clock->hour += minutes_elapsed / MINUTES_IN_AN_HOUR;
   minutes_elapsed %= MINUTES_IN_AN_HOUR;
   clock->minute += minutes_elapsed;

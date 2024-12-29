@@ -1,9 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "../headers/xml.h"
 
-char* TrimWhitespace(char* str) {
+char* TrimWhitespace(char* str) 
+{
   while (isspace((unsigned char)*str)) str++;
   if (*str == 0) return str;
 
@@ -53,7 +55,8 @@ struct XMLNode* ParseXMLFile(const char* filename)
   return root;
 }
 
-struct XMLNode* CreateXMLNode(const char* tag_name, const char* value) {
+struct XMLNode* CreateXMLNode(const char* tag_name, const char* value) 
+{
   struct XMLNode* node = (struct XMLNode*)malloc(sizeof(struct XMLNode));
   node->tag_name = strdup(tag_name);
   node->value = value ? strdup(value) : NULL;

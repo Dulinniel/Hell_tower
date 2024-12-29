@@ -1,3 +1,6 @@
+#ifndef XML_H
+#define XML_H
+
 struct XMLNode {
   char* tag_name; // Tag name
   char* value;    // Node value
@@ -19,4 +22,6 @@ struct XMLAttribute {
 char* TrimWhitespace(char* str);
 struct XMLNode* ParseXMLFile(const char* filename);
 struct XMLNode* CreateXMLNode(const char* tag_name, const char* value);
-void AddChildNode(struct XMLNode* parent, struct XMLNode* child)
+void AddChildNode(struct XMLNode* parent, struct XMLNode* child);
+
+#endif

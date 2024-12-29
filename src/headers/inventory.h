@@ -1,4 +1,10 @@
-typedef Item *PItem;
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
+#include <SDL2/SDL.h>
+#include "scene.h"
+
+typedef struct Item *PItem;
 
 enum InventoryStatus
 {
@@ -18,18 +24,19 @@ enum InventoryStatus
   UPDATE_FAILED = 106
 };
 
+struct Item
+{
+  char name[100];
+  size_t id;
+  int amount;
+  PItem next;
+  PItem previous;
+};
+
 struct InventoryOutputPackage 
 {
   struct Item item;
   enum InventoryStatus status;
-};
-
-struct Item
-{
-  char name[100];
-  int amount;
-  PItem next;
-  PItem previous;
 };
 
 struct Inventory
@@ -37,16 +44,20 @@ struct Inventory
   PItem cursor;
   PItem start;
   PItem end;
-  size_t size;
-}
+  unsigned char size;
+};
 
-struct InventoryOutputPackage CreateTempItem(struct Inventory *list, struct Item element)
+struct InventoryOutputPackage CreateTempItem(struct Inventory *list, struct Item element);
 struct InventoryOutputPackage AddFirst(struct Inventory *list, struct Item element);
 struct InventoryOutputPackage AddLast(struct Inventory *list, struct Item element);
 
 struct InventoryOutputPackage ConsumeItem(struct Inventory *list, const char* name, int amount);
 
 struct InventoryOutputPackage RemoveFromInventory(struct Inventory *list, struct Item element);
-struct InventoryOutputPackage UpdateInventory(struct Inventory *list, struct Item element);
+struct InventoryOutputPackage UpdateInventory(struct Inventory *list, struct Item *item);
 
 struct InventoryOutputPackage GetItem(struct Inventory *list, const char* name);
+
+void create_inventory(struct Scene *scene, SDL_Renderer *renderer);
+
+#endif

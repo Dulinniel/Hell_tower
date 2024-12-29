@@ -7,22 +7,22 @@ const unsigned char MONTHS_IN_YEAR = 12;
 
 void NextDay(struct Date *currentDate)
 {
-  currentDay->day = (currentDay->day + 1) % DAYS_IN_WEEK;
-  if ( currentDay->nthDay + 1 > DAYS_IN_MONTH )
+  currentDate->day = (currentDate->day + 1) % DAYS_IN_WEEK;
+  if ( currentDate->nthDay + 1 > DAYS_IN_MONTH )
   {
-    currentDay->nthDay = 1;
-    currentDay->month = (currentDay->month + 1) % MONTHS_IN_YEAR;
-  } else currentDay->nthDay += 1;
+    currentDate->nthDay = 1;
+    NextMonth(currentDate);
+  } else currentDate->nthDay += 1;
 }
 
 void PreviousDay(struct Date *currentDate)
 {
-  currentDay->day = ( ( currentDay->day - 1 ) + DAYS_IN_WEEK ) % DAYS_IN_WEEK;
-  if ( currentDay->nthDay - 1 ==  0 )
+  currentDate->day = ( ( currentDate->day - 1 ) + DAYS_IN_WEEK ) % DAYS_IN_WEEK;
+  if ( currentDate->nthDay - 1 ==  0 )
   {
-    currentDay->nthDay = DAYS_IN_MONTH;
-    currentDay->month = ( ( currentDay->month - 1 ) + DAYS_IN_MONTH ) % DAYS_IN_MONTH;
-  } else currentDay->nthDay -= 1
+    currentDate->nthDay = DAYS_IN_MONTH;
+    PreviousMonth(currentDate);
+  } else currentDate->nthDay -= 1;
 }
 
 const char* DayName(enum Days day)
@@ -40,14 +40,14 @@ const char* DayName(enum Days day)
   }
 }
 
-void NextMonth(enum Months *currentMonth)
+void NextMonth(struct Date *currentDate)
 {
-  currentMonth->month = (currentMonth->month + 1) % DAYS_IN_MONTH;
+  currentDate->month = (currentDate->month + 1) % DAYS_IN_MONTH;
 }
 
-void PreviousMonth(enum Months *currentMonth)
+void PreviousMonth(struct Date *currentDate)
 {
-  currentMonth->month = ( ( currentMonth->month - 1 ) + DAYS_IN_MONTH ) % DAYS_IN_MONTH;
+  currentDate->month = ( ( currentDate->month - 1 ) + DAYS_IN_MONTH ) % DAYS_IN_MONTH;
 }
 
 const char* Monthname(enum Months month)

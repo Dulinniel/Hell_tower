@@ -1,3 +1,6 @@
+#ifndef DATE_H
+#define DATE_H
+
 enum Days
 {
   Lungernum, // Monday
@@ -6,23 +9,23 @@ enum Days
   Jeuilonum, // Thursday
   Venkartum, // Friday
   Samejum, // Saturday
-  Dimalkum // Sunday
+  Dimalkum, // Sunday
 };
 
 enum Months
 {
-  September;
-  October;
-  November;
-  December;
-  January;
-  February;
-  March;
-  April;
-  May;
-  June;
-  July;
-  August
+  September,
+  October,
+  November,
+  December,
+  January,
+  February,
+  March,
+  April,
+  May,
+  June,
+  July,
+  August,
 };
 
 struct Date
@@ -36,6 +39,8 @@ void NextDay(struct Date *currentDate);
 void PreviousDay(struct Date *currentDate);
 const char* DayName(enum Days);
 
-void NextMonth(enum Months *currentMonth);
-void PreviousMonth(enum Months *currentMonth);
+void NextMonth(struct Date *currentMonth);
+void PreviousMonth(struct Date *currentMonth);
 const char* Monthname(enum Months);
+
+#endif

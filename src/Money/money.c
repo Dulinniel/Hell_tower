@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "./headers/money.h"
+#include "../headers/money.h"
 
 // Convert faces to copper equivalent
-// Use define because it can be either a Waller or a Bank
+// Use define because it can be either a Wallet or a Bank
 #define CONVERT_TO_COPPER(entity) \
     ((entity).copper_coin \
     + (entity).silver_coin * COPPER_TO_SILVER_VALUE \
@@ -44,10 +44,10 @@ void ConvertFace(struct Wallet *wallet)
 void AddMoney(struct Wallet *userWallet, struct Wallet gainWallet)
 {
   // No overflow check, just speedrun how fast you can positive arithmetic overflow this shit
-  userWallet->copper_coin += gainWallet->copper_coin;
-  userWallet->silver_coin += gainWallet->silver_coin;
-  userWallet->gold_coin += gainWallet->gold_coin;
-  userWallet->platinum_coin += gainWallet->platinum_coin;
+  userWallet->copper_coin += gainWallet.copper_coin;
+  userWallet->silver_coin += gainWallet.silver_coin;
+  userWallet->gold_coin += gainWallet.gold_coin;
+  userWallet->platinum_coin += gainWallet.platinum_coin;
 
   ConvertFace(userWallet);
 }
@@ -66,7 +66,7 @@ struct Wallet ConvertFromCopper(size_t totalCopper)
 {
   struct Wallet wallet = {0};
 
-  // Just some basic artihmetic to convert from copper to higer faces
+  // Just some basic artihmetic to convert from copper to higher faces
   wallet.platinum_coin = totalCopper / (GOLD_TO_PLATINUM_VALUE * SILVER_TO_GOLD_VALUE * COPPER_TO_SILVER_VALUE);
   totalCopper %= (GOLD_TO_PLATINUM_VALUE * SILVER_TO_GOLD_VALUE * COPPER_TO_SILVER_VALUE);
 
@@ -90,16 +90,16 @@ struct Wallet ConvertFromCopper(size_t totalCopper)
 * * * userWallet -> The wallet of the user to remove from ( struct Wallet )
 * * * lostWallet -> The amount of money to remove ( struct Wallet )
 */
-struct MoneyOperation RemoveMoney(struct Wallet userWallet, struct Wallet loseWallet) 
+struct MoneyOperation RemoveMoney(struct Wallet *userWallet, struct Wallet loseWallet) 
 {
-  ConvertFace(&userWallet);
+  ConvertFace(userWallet);
   struct MoneyOperation operationResult;
 
   // Hoping you're not trying to buy something out of budget
   operationResult.OperationAborted = SUCCESS;
 
-  // Evetything is copper
-  size_t userTotalCopper = CONVERT_TO_COPPER(userWallet);
+  // Everything is copper
+  size_t userTotalCopper = CONVERT_TO_COPPER(*userWallet);
   size_t loseTotalCopper = CONVERT_TO_COPPER(loseWallet);
 
   // Check if you're broke in copper
@@ -174,13 +174,13 @@ struct MoneyOperation WithDrawFromBank(struct Wallet *userWallet, struct Wallet 
   struct MoneyOperation operationResult;
   operationResult.OperationAborted = SUCCESS;
 
-  // Again, I use Alchemy ( pre-processor instruction ) to transmute ( Calcul an equivalent ) of your money into copper
+  // Again, I use Alchemy ( pre-processor instruction ) to transmute ( Compute an equivalent of ) your money into copper
   size_t totalBankCopper = CONVERT_TO_COPPER(*bank);
   size_t totalWithdrawCopper = CONVERT_TO_COPPER(moneyToWithdraw);
 
   if (totalBankCopper < totalWithdrawCopper) operationResult.OperationAborted = FAILED;
 
-  // If you asked for something you actually deposit
+  // If you asked for something you actually deposed
   if ( operationResult.OperationAborted == SUCCESS )
   {
     // Highjack the bank
@@ -189,7 +189,7 @@ struct MoneyOperation WithDrawFromBank(struct Wallet *userWallet, struct Wallet 
     bank->gold_coin -= moneyToWithdraw.gold_coin;
     bank->platinum_coin -= moneyToWithdraw.platinum_coin;
 
-    // Get back your money
+    // Give your money back
     *userWallet = ConvertFromCopper(CONVERT_TO_COPPER(*userWallet) + totalWithdrawCopper);
   }
 

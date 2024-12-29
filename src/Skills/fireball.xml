@@ -1,0 +1,28 @@
+<Skill>
+  <name>Fireball</name>
+  <description>A ball that is on fire</description>
+  <rank>COMMON</rank>
+  <id>1</id>
+  <min_level>1</min_level>
+  <max_level>30</max_level>
+  <skill_types>SPELL|FIRE</skill_types>
+  <cooldown>1</cooldown>
+  <load_turn>0</load_turn>
+  <mana_cost>5</mana_cost>
+    
+  <FixedDamages>
+    <FixedDamage>
+      <damage_type>FIRE</damage_type>
+      <damage_value>4</damage_value>
+    </FixedDamage>
+  </FixedDamages>
+
+  <LastingDamages>
+    <LastingDamage>
+      <damage_type>BURN</damage_type>
+      <damage_value>3</damage_value>
+      <duration>3</duration>
+      <chance>20</chance>
+    </LastingDamage>
+  </LastingDamages>
+</Skill>

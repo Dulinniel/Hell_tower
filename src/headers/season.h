@@ -1,3 +1,6 @@
+#ifndef SEASON_H
+#define SEASON_H
+
 #include "./date.h"
 
 enum Season
@@ -5,8 +8,10 @@ enum Season
   SPRING,
   SUMMER,
   AUTUMN,
-  WINTER
-}
+  WINTER,
+};
 
-enum Season GetCurrentSeason(Date *date);
+enum Season GetCurrentSeason(struct Date *date);
 const char* GetSeasonName(enum Season season);
+
+#endif

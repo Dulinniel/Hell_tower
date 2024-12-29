@@ -7,13 +7,13 @@ enum Race
   HALFLING,
   BEASTMAN,
   REPTILIAN
-}
+};
 
 enum Gender
 {
   MAN,
   WOMAN
-}
+};
 
 enum Jobs
 {
@@ -38,7 +38,7 @@ enum Jobs
   MERCHANT,
   ENGINEER,
   ASSASSIN
-}
+};
 
 enum Class
 {
@@ -51,7 +51,7 @@ enum Class
   SWORDSMAN,
   MAN_AT_ARM,
   PRIEST
-}
+};
 
 struct Identity
 {
@@ -61,20 +61,20 @@ struct Identity
   unsigned char age;
   unsigned char weight;
   unsigned char height;
-}
+};
 
 struct Specialities
 {
   enum Class class;
   enum Jobs job;
-}
+};
 
 struct Energy
 {
   size_t life;
   size_t mana;
   size_t stamina;
-}
+};
 
 struct Needs
 {
@@ -82,7 +82,7 @@ struct Needs
   size_t thirst;
   size_t breath;
   float heat;
-}
+};
 
 struct Craft
 {
@@ -90,8 +90,8 @@ struct Craft
   size_t potting;
   size_t cooking;
   size_t brewing;
-  size_t sewing
-}
+  size_t sewing;
+};
 
 struct Other
 {
@@ -101,7 +101,7 @@ struct Other
   size_t intelligence;
   size_t agility;
   float reputation;
-}
+};
 
 struct Elemental_Resistance
 {
@@ -113,7 +113,7 @@ struct Elemental_Resistance
   size_t thunder_resistance;
   size_t acid_resistance;
   size_t ether_resistance;
-}
+};
 
 struct Magical_Resistance
 {
@@ -126,7 +126,8 @@ struct Magical_Resistance
   size_t holy_resistance;
   size_t necrotic_resistance;
   size_t demonic_resistance;
-}
+  size_t curse_resistance;
+};
 
 struct Elemental_Strength
 {
@@ -138,7 +139,7 @@ struct Elemental_Strength
   size_t thunder_strength;
   size_t acid_strength;
   size_t ether_strength;
-}
+};
 
 struct Magical_Strength
 {
@@ -151,7 +152,7 @@ struct Magical_Strength
   size_t holy_strength;
   size_t necrotic_strength;
   size_t demonic_strength;
-}
+};
 
 struct Physical_Resistance
 {
@@ -162,7 +163,7 @@ struct Physical_Resistance
   size_t slashing_resistance;
   size_t bludgeoning_resistance;
   size_t fall_resistance;
-}
+};
 
 struct Physical_Strength
 {
@@ -171,7 +172,7 @@ struct Physical_Strength
   size_t piercing_Strength;
   size_t slashing_Strength;
   size_t bludgeoning_Strength;
-}
+};
 
 struct Psychical_Resistance
 {
@@ -179,7 +180,7 @@ struct Psychical_Resistance
   float possession_resistance;
   float confusion_resistance;
   float taunt_resistance; // 0 for any competitive LoL player
-}
+};
 
 struct Psychical_Strength
 {
@@ -187,21 +188,28 @@ struct Psychical_Strength
   size_t possession_strength;
   size_t confusion_strength;
   size_t taunt_strength;
-}
+};
 
 struct Resistance
 {
   struct Magical_Resistance magical_resistance;
   struct Physical_Resistance physical_resistance;
   struct Psychical_Resistance psychical_Resistance;
-}
+};
+
+struct Critical_Damages
+{
+  size_t critical_rate;
+  float critical_damage;
+};
 
 struct Strength
 {
   struct Magical_Strength magical_strength;
   struct Physical_Strength physical_strength;
   struct Psychical_Strength psychical_strength;
-}
+  struct Critical_Damages critical;
+};
 
 struct Character
 {
@@ -213,7 +221,6 @@ struct Character
   struct Resistance resistance;
   struct Craft craft;
   struct Other other;
-  enum Status status;
 };
 
 //struct Character CreateCharacter(struct Character character);

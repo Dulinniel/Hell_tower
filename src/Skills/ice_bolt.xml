@@ -1,0 +1,19 @@
+<Skill>
+  <name>Ice Bolt</name>
+  <description>Multiple ice projectile thrown at high speed</description>
+  <rank>COMMON</rank>
+  <id>2</id>
+  <min_level>1</min_level>
+  <max_level>30</max_level>
+  <skill_types>SPELL|ICE</skill_types>
+  <cooldown>1</cooldown>
+  <load_turn>0</load_turn>
+  <mana_cost>8</mana_cost>
+    
+  <FixedDamages>
+    <FixedDamage>
+      <damage_type>ICE</damage_type>
+      <damage_value>6</damage_value>
+    </FixedDamage>
+  </FixedDamages>
+</Skill>

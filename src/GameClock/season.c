@@ -5,7 +5,7 @@
 #define IS_SPRING(month) ((month) >= 6 && (month) <= 8)
 #define IS_SUMMER(month) ((month) >= 9 && (month) <= 11)
 
-enum Season GetCurrentSeason(Date *date)
+enum Season GetCurrentSeason(struct Date *date)
 {
   enum Season season;
 

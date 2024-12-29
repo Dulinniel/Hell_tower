@@ -1,4 +1,7 @@
-#include "./season.h";
+#ifndef WEATHER_H
+#define WEATHER_H
+
+#include "./season.h"
 
 enum Weather
 {
@@ -7,14 +10,14 @@ enum Weather
   SNOWY,
   STORMY,
   FOGGY,
-  CLOUDY
-}
+  CLOUDY,
+};
 
 struct Temperature_Range
 {
   char minimal_temperature;
   char maximal_temperature;
-}
+};
 
 struct MeteoProbability
 {
@@ -25,11 +28,13 @@ struct MeteoProbability
 struct WeatherReport
 {
   enum Weather weather;
-  Temperature_Range temperature;
+  struct Temperature_Range temperature;
   char current_temperature;
-}
+};
 
 enum Weather SetWeather(enum Season season);
 void UpdateWeather(struct WeatherReport *weatherReport, enum Season season);
 struct Temperature_Range GetTemperatureRange(enum Season season);
-const char* GetMeteoName(Weather meteo);
+const char* GetMeteoName(enum Weather meteo);
+
+#endif

@@ -1,9 +1,9 @@
-#include <stdio>
-#include "./headers/character.h"
+#include <stdio.h>
+#include "../headers/character.h"
 
-const unsigned float BASE_HUNGER_FACTOR_AUGMENTATION = 0.1;
-const unsigned float BASE_THIRST_FACTOR_AUGMENTATION = 0.2;
-const unsigned float BASE_OXYGEN_NEEDS_FACTOR_AUGMENTATION = 1.5;
+const float BASE_HUNGER_FACTOR_AUGMENTATION = 0.1;
+const float BASE_THIRST_FACTOR_AUGMENTATION = 0.2;
+const float BASE_OXYGEN_NEEDS_FACTOR_AUGMENTATION = 1.5;
 
 void UpdateStat(size_t *stat, int delta) 
 {
@@ -78,7 +78,7 @@ const char* GetJobsName(enum Jobs job)
 
 const char* GetClassName(enum Class class)
 {
-  switch (job)
+  switch (class)
   {
   case MAGE: return "Mage";
   case WARRIOR: return "Warrior";
